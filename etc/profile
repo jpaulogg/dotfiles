@@ -1,0 +1,7 @@
+# /etc/profile
+
+#ZSH
+export ZDOTDIR="${HOME}/.config/zsh"
+
+export TERMINAL='st'
+export EDITOR='vim'
