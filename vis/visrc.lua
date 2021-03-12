@@ -11,5 +11,4 @@ end)
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	-- Your per window configuration options e.g.
 	vis:command('set relativenumbers')
-	vis:command('set cursorline')
 end)

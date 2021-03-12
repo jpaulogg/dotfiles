@@ -1,0 +1,13 @@
+#!/bin/sh
+# inicialização do Xorg
+
+xcompmgr &
+xbacklight -set 12 &
+xset r rate 300 50 &
+/home/jpgg/.local/bin/xremaps &
+
+unclutter &
+feh --randomize --no-fehbg --bg-fill ~/Imagem/colecao-papel-de-parede/* &
+
+slstatus &
+exec dwm

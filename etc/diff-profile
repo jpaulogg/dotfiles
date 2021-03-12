@@ -1,0 +1,5 @@
+# /etc/profile
+
+# MINHAS ADIÇÕES
+export ZDOTDIR="${HOME}/.config/zsh"
+export XINITRC="${HOME}/.config/x11/xinitrc"

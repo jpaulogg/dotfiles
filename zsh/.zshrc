@@ -1,11 +1,9 @@
+#!/bin/zsh
 # Zsh - arquivo de configuração (executado em shells de login e de não-login).
 
 # aparência
 autoload -U colors && colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-
-# plugin syntwx
-source /home/jpgg/.config/zsh/plugin/syntax/fast-syntax-highlighting.plugin.zsh
 
 # opções {{{1
 setopt autocd
@@ -68,12 +66,20 @@ alias mkdir='mkdir -pv'
 alias ls="ls -phN --color=auto --group-directories-first"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
+alias less="less -R"
 
 # abreviações de comandos longos
-alias v='nvim'
-alias p='doas pacman'
 alias xb='xbacklight'
+alias sx="startx ${HOME}/.config/X11/xinitrc"
+alias p='doas pacman'
 alias mci='doas make clean install'
+
 alias gc='git commit'
 alias gpom='git push origin master'
 alias gitu='git add . && git commit -m "update" && git push origin'
+
+alias v='nvim'
+
+# plugin syntwx
+source /home/jpgg/.local/share/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2> /dev/null
+
