@@ -1,0 +1,2 @@
+set ignorecase
+color "type=STRG bg=DEFAULT_COLOR fg=YELLOW"

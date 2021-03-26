@@ -1,0 +1,4 @@
+R_HOME_USER=${HOME}/.local/lib/R
+R_HISTFILE=${XDG_DATA_HOME}/R/histfile
+R_PROFILE_USER=${XDG_CONFIG_HOME}/R/Rprofile
+R_BROWSER=${BROWSER:-vimb}

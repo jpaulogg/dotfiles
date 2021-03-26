@@ -1,0 +1,8 @@
+#options(repos=structure(c(CRAN="https://cran.fiocruz.br/")))
+l  <- library
+u  <- unique
+lv <- levels
+cn <- colnames
+fa <- formalArgs
+cd <- curl::curl_download
+dt <- data.table::fread 
