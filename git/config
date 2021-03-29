@@ -1,0 +1,18 @@
+[core]
+	editor = nvim
+	excludesfile = /home/jpgg/.config/.gitignore
+[user]
+	email = joaopauloggarcia@gmail.com
+	name = João Paulo G. Garcia
+[diff]
+	tool = nvimdiff
+[difftool "nvimdiff"]
+	cmd = "nvim -d -u ~/.config/nvim/init.vim \"$LOCAL\" \"$REMOTE\""
+[merge]
+	tool = nvimdiff
+[mergetool]
+	keepBackup = false
+[mergetool "nvimdiff"]
+	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[credential]
+	helper = cache --timeout=3600

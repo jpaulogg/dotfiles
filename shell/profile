@@ -1,0 +1,47 @@
+#!/bin/sh
+# Zsh Environment - executed in login, non-login and scripts.
+
+# programas padrões
+TERMINAL='st'
+EDITOR='vis'
+BROWSER='vimb'
+
+export TERMINAL EDITOR BROWSER PDF_READER READER
+
+# arquivos de configuração
+XDG_CONFIG_HOME="$HOME/.config"
+ZDOTDIR="$XDG_CONFIG_HOME/shell"
+XINITRC="${HOME}/.config/X11/xinitrc"
+XAUTHORITY="${HOME}/.config/X11/Xauthority"
+XDG_DATA_HOME="$HOME/.local/share"
+R_ENVIRON_USER="${XDG_CONFIG_HOME}/R/Renviron"
+GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
+INPUTRC="${XDG_CONFIG_HOME}/shell/inputrc"
+
+export XDG_CONFIG_HOME ZDOTDIR XINITRC XAUTHORITY XDG_DATA_HOME R_ENVIRON_USER \
+	GNUPGHOME INPUTRC
+
+# histórico e cache
+XDG_CACHE_HOME="${XDG_DATA_HOME}/cache"
+HISTFILE="${XDG_CACHE_HOME}/histifle"
+LESSHISTFILE="${XDG_CACHE_HOME}/lesshist"
+
+export XDG_CACHE_HOME HISTFILE LESSHISTFILE
+
+# man pages colors (less)
+#LESS_TERMCAP_mb=$(tput bold; tput setaf 9)             # blinking red
+#LESS_TERMCAP_md=$(tput bold; tput setaf 14)            # bold (section) aqua
+#LESS_TERMCAP_so=$(tput bold; tput rev; tput setaf 15)  # stand (status and search) out white
+#LESS_TERMCAP_se=$(tput rmso; tput sgr0)                # end standout
+#LESS_TERMCAP_us=$(tput bold; tput setaf 13)            # underline (keywords, etc) purple
+#LESS_TERMCAP_ue=$(tput sgr0)                           # end underline
+#LESS_TERMCAP_me=$(tput sgr0)                           # end bold, blinking, standout, underline
+export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
+export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
+export LESS_TERMCAP_me="$(printf '%b' '[0m')"
+export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"
+export LESS_TERMCAP_se="$(printf '%b' '[0m')"
+export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
+export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
+export LESS_TERMCAP_mb LESS_TERMCAP_md LESS_TERMCAP_me LESS_TERMCAP_se LESS_TERMCAP_so \
+	LESS_TERMCAP_ue LESS_TERMCAP_us
