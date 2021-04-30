@@ -3,7 +3,7 @@
 
 local lexers = vis.lexers
 
---lexers.STYLE_DEFAULT = 'fore:#d7d7d7,back:#333333'
+--lexers.STYLE_DEFAULT = 'fore:#d7d7d7,back:#3f3f3f'
 lexers.STYLE_DEFAULT = 'fore:#d7d7d7'
 lexers.STYLE_NOTHING = ''
 lexers.STYLE_CLASS = ''
@@ -27,14 +27,14 @@ lexers.STYLE_EMBEDDED = ''
 lexers.STYLE_IDENTIFIER = ''
 
 lexers.STYLE_LINENUMBER = 'fore:#707070'
-lexers.STYLE_LINENUMBER_CURSOR = 'fore:#fabd2f,bold'
+lexers.STYLE_LINENUMBER_CURSOR = 'fore:#ffffd7,bold'
 lexers.STYLE_CURSOR = 'back:#585858'
 lexers.STYLE_CURSOR_PRIMARY = 'fore:#1c1c1c,back:#87afaf,bold'
 lexers.STYLE_CURSOR_LINE = 'back:#444444'
 lexers.STYLE_COLOR_COLUMN = 'back:#444444'
 lexers.STYLE_SELECTION = 'back:#5f875f'
-lexers.STYLE_STATUS = 'back:#262626,fore:#87af87'
-lexers.STYLE_STATUS_FOCUSED = 'back:#303030,fore:#afaf87,bold'
+lexers.STYLE_STATUS = 'back:#282828,fore:#87af87'
+lexers.STYLE_STATUS_FOCUSED = 'back:#202000,fore:#afaf87,bold'
 lexers.STYLE_SEPARATOR = ''
 lexers.STYLE_INFO = ''
 lexers.STYLE_EOF = 'fore:#585858'

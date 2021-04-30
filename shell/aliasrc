@@ -1,24 +1,24 @@
-## Aliases {{{1
+#!/bin/sh
 
 # adicionando opções padrões
-alias cp='cp -iv'
-alias mv='mv -iv'
-alias rm='rm -Iv'
-alias mkdir='mkdir -pv'
-
-alias ls="ls -phN --color=auto --group-directories-first"
-alias grep="grep --color=auto"
-alias diff="diff --color=auto"
-alias less="less -R"
+alias cp='cp -iv' \
+      mv='mv -iv' \
+      rm='rm -Iv' \
+      mkdir='mkdir -pv' \
+      ls="ls -phN --color=auto --group-directories-first" \
+      grep="grep --color=auto" \
+      diff="diff --color=auto" \
+      less="less -R"
 
 # abreviações de comandos longos
-alias xb='xbacklight'
-alias sx="startx ${HOME}/.config/X11/xinitrc"
-alias p='doas pacman'
-alias mci='doas make clean install'
+alias xb='xbacklight' \
+      xrb='xrandr --output VGA1 --brightness' \
+      sx="startx ${HOME}/.config/X11/xinitrc" \
+      p='doas pacman' \
+      mci='doas make clean install' \
+      gc='git commit' \
+      gpom='git push origin master' \
+      gitu='git add . && git commit -m "update" && git push origin'
 
-alias gc='git commit'
-alias gpom='git push origin master'
-alias gitu='git add . && git commit -m "update" && git push origin'
-
-alias v='nvim'
+# preguiça
+alias v='nvim' \

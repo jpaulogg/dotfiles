@@ -1,23 +1,46 @@
+# Opções
 set hint-keys=asdferhjklgu
 set hint-match-element=false
 set incsearch=true
 
 #set monospace-font=Noto Sans Mono
 set default-font=Noto Sans Mono
+set minimum-font-size=12
 set dark-mode=on
 set status-bar=false
+set input-autohide=true
 
 set download-path=${HOME}/Downloads
-set editor-command=st -e "nvim %s"
-#set scripts=false
+set x-hint-command=:sh! /bin/mpv <C-R>;<CR>
+set editor-command=st -t float -e vis +'set syntax text' %s
 
-set home-page=https://valor.globo.com/valor-data/
+# mapeamentos
+nmap <C-c> <Esc>
+imap <C-E> <C-T>
+imap <C-c> <Esc>
+cmap <C-n> <Tab>
+cmap <C-p> <S-Tab>
+cmap <C-j> <CR>
+
+nmap ZQ :quit!<CR>
+nmap <C-w> :quit<CR>
+
+nmap C :set caret!<CR>
+nmap S :set status-bar!<CR>
+nmap J :set scripts!<CR>R<Esc>
+
+nmap <C-j> :sh! st -t 'float' -e ranger ~/Downloads<CR>
+nmap <C-b> :bma<Space>
+
+# Página inicial e search engines
+set home-page=https://duckduckgo.com/
 shortcut-add yt=http://www.youtube.com/results?search_query=$0
 shortcut-add gg=https://www.google.com/search?hl=pt-BR&source=hp&biw=&bih=&q=$0&btnG=Pesquisa+Google&iflsig=AINFCbYAAAAAYFpaFH8Xh3RcnZTBH2mBQaabFUietfUJ&gbv=1
 shortcut-add dd=https://duckduckgo.com/?q=$0&t=h_&ia=web
 shortcut-add aw=https://wiki.archlinux.org/index.php?search=$0&title=Special%3ASearch&profile=default&fulltext=1
 shortcut-add gh=https://github.com/search?q=$0
-shortcut-add gti=https://translate.google.com/?sl=en&tl=pt&text=$0%20off&op=translate
-shortcut-add gtp=https://translate.google.com/?sl=pt&tl=en&text=$0%20off&op=translate
+shortcut-add gt=https://translate.google.com/?sl=en&tl=pt&text=$0%0A&op=translate
+#shortcut-add gt=https://translate.google.com/?sl=pt&tl=en&text=$0%0A&op=translate
+shortcut-add lg=http://libgen.li/search.php?req=$0&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def
 
 shortcut-default dd

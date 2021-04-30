@@ -1,9 +1,12 @@
 #!/bin/zsh
-# Zsh - arquivo de configuração (executado em shells de login e de não-login).
 
 # aparência
 autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+if [ $USERNAME = 'root' ]; then
+	PS1=" %B%F{1}%m:%F{12}%~%F{1}#%F{reset_color}%b "
+else
+	PS1="%B%F{1}[ %F{144}%n:%F{3}%~%F{1} ]%F{144}$%F{reset_color}%b "
+fi
 
 # opções {{{1
 setopt autocd
@@ -11,8 +14,8 @@ setopt nobeep
 setopt histignorealldups
 
 HISTFILE="${XDG_DATA_HOME}/zsh/histfile"
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=5000
+SAVEHIST=5000
 
 # completando linha de comando
 autoload -U compinit 
@@ -56,6 +59,3 @@ echo -ne '\e[5 q'                # iniciar com o cursor "fino" (inserção)
 preexec() { echo -ne '\e[5 q' ;} # o mesmo para novos shells
 
 source "${ZDOTDIR}/aliasrc"
-
-# plugin syntwx
-source /home/jpgg/.local/share/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2> /dev/null

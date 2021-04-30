@@ -1,12 +1,12 @@
 #!/bin/sh
-# Zsh Environment - executed in login, non-login and scripts.
 
 # programas padrões
 TERMINAL='st'
 EDITOR='vis'
-BROWSER='vimb'
+BROWSER="${HOME}/.local/bin/vimb-tabbed"
+FILEMANAGER='ranger'
 
-export TERMINAL EDITOR BROWSER PDF_READER READER
+export TERMINAL EDITOR BROWSER FILEMANAGER
 
 # arquivos de configuração
 XDG_CONFIG_HOME="$HOME/.config"
@@ -29,6 +29,7 @@ LESSHISTFILE="${XDG_CACHE_HOME}/lesshist"
 export XDG_CACHE_HOME HISTFILE LESSHISTFILE
 
 # man pages colors (less)
+
 #LESS_TERMCAP_mb=$(tput bold; tput setaf 9)             # blinking red
 #LESS_TERMCAP_md=$(tput bold; tput setaf 14)            # bold (section) aqua
 #LESS_TERMCAP_so=$(tput bold; tput rev; tput setaf 15)  # stand (status and search) out white
@@ -45,3 +46,8 @@ export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
 export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export LESS_TERMCAP_mb LESS_TERMCAP_md LESS_TERMCAP_me LESS_TERMCAP_se LESS_TERMCAP_so \
 	LESS_TERMCAP_ue LESS_TERMCAP_us
+
+# korn shell
+ENV="${XDG_CONFIG_HOME}/shell/.shinit"
+export ENV
+

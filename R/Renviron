@@ -1,5 +1,5 @@
 R_HOME_USER=${HOME}/.local/lib/R
-R_LIBS_USER=.local/lib/R/x86_64-pc-linux-gnu/
+R_LIBS_USER=${R_HOME_USER}/x86_64-pc-linux-gnu/
 R_HISTFILE=${XDG_DATA_HOME}/R/histfile
 R_PROFILE_USER=${XDG_CONFIG_HOME}/R/Rprofile
 R_BROWSER=${BROWSER:-vimb}
