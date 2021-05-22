@@ -1,0 +1,31 @@
+[Core General]
+ExternalEditor=Custom
+ExternalEditorCommand=/usr/local/bin/vis
+ObeyDRM=false
+
+[Dlg Performance]
+EnableCompositing=false
+
+[Dlg Presentation]
+SlidesTransition=SplitHorizontalOut
+
+[General]
+ShellOpenFileInTabs=true
+ShowOSD=false
+SwitchToTabIfOpen=true
+
+[Main View]
+ShowLeftPanel=false
+SplitterSizes=586,968
+
+[Nav Panel]
+SyncThumbnailsViewport=false
+
+[PageView]
+BackgroundColor=40,40,40
+ShowScrollBars=false
+UseCustomBackgroundColor=true
+
+[Reviews]
+BuiltinAnnotationTools=<tool type="highlight" id="1"><engine color="#fffffc99" type="TextSelector"><annotation color="#fffffc99" type="Highlight"/></engine></tool>,<tool type="underline" id="2"><engine color="#ff0000" type="TextSelector"><annotation color="#ffff0000" type="Underline"/></engine><shortcut>3</shortcut></tool>,<tool type="squiggly" id="3"><engine color="#ff0000" type="TextSelector"><annotation color="#ffff0000" type="Squiggly"/></engine></tool>,<tool type="strikeout" id="4"><engine color="#ff0000" type="TextSelector"><annotation color="#ffff0000" type="StrikeOut"/></engine></tool>,<tool type="typewriter" name="Insert Text" id="5"><engine type="PickPoint" block="true"><annotation color="#00ffffff" textColor="#000000" type="Typewriter" width="0"/></engine><shortcut>4</shortcut></tool>,<tool type="note-inline" id="6"><engine color="#ffff00" type="PickPoint" hoverIcon="tool-note-inline" block="true"><annotation color="#ffffff00" textColor="#ff000000" type="FreeText"/></engine><shortcut>5</shortcut></tool>,<tool type="note-linked" id="7"><engine color="#ffff00" type="PickPoint" hoverIcon="tool-note"><annotation icon="Note" color="#ffffff00" type="Text"/></engine><shortcut>6</shortcut></tool>,<tool type="ink" id="8"><engine color="#00ff00" type="SmoothLine"><annotation color="#ff00ff00" type="Ink" width="2"/></engine></tool>,<tool type="straight-line" name="Arrow" id="9"><engine color="#000000" type="PolyLine" points="2"><annotation color="#ff000000" type="Line" width="2" endStyle="3"/></engine></tool>,<tool type="straight-line" id="10"><engine color="#000000" type="PolyLine" points="2"><annotation color="#ff000000" type="Line" width="2"/></engine></tool>,<tool type="rectangle" id="11"><engine color="#ff0000" type="PickPoint" block="true"><annotation color="#ffff0000" type="GeomSquare" width="3"/></engine></tool>,<tool type="ellipse" id="12"><engine color="#00ffff" type="PickPoint" block="true"><annotation color="#ff00ffff" type="GeomCircle" width="3"/></engine></tool>,<tool type="polygon" id="13"><engine color="#007eee" type="PolyLine" points="-1"><annotation color="#ff007eee" type="Line" width="2"/></engine></tool>,<tool type="stamp" id="14"><engine type="PickPoint" size="64" block="true"><annotation type="Stamp"/></engine></tool>
+QuickAnnotationTools=<tool name="Yellow Highlighter" type="highlight" id="1"><engine type="TextSelector" color="#ffffff7f"><annotation type="Highlight" color="#ffffff7f"/></engine><shortcut>1</shortcut></tool>,<tool name="Green Highlighter" id="2" type="highlight"><engine type="TextSelector" color="#00ff00"><annotation type="Highlight" color="#ff00ff00"/></engine><shortcut>2</shortcut></tool>,<tool id="3" type="underline"><engine type="TextSelector" color="#ff0000"><annotation type="Underline" color="#ffff0000"/></engine><shortcut>3</shortcut></tool>,<tool name="Insert Text" id="4" type="typewriter"><engine type="PickPoint" block="true"><annotation type="Typewriter" width="0" textColor="#000000" color="#00ffffff"/></engine><shortcut>4</shortcut></tool>,<tool id="5" type="note-inline"><engine type="PickPoint" block="true" hoverIcon="tool-note-inline" color="#ffff00"><annotation type="FreeText" textColor="#ff000000" color="#ffffff00"/></engine><shortcut>5</shortcut></tool>,<tool id="6" type="note-linked"><engine type="PickPoint" hoverIcon="tool-note" color="#ffff00"><annotation type="Text" icon="Note" color="#ffffff00"/></engine><shortcut>6</shortcut></tool>

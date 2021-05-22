@@ -1,13 +1,12 @@
 [core]
-	editor = nvim
-	excludesfile = /home/jpgg/.config/.gitignore
+	editor = vis
 [user]
 	email = joaopauloggarcia@gmail.com
 	name = João Paulo G. Garcia
 [diff]
 	tool = nvimdiff
 [difftool "nvimdiff"]
-	cmd = "nvim -d -u ~/.config/nvim/init.vim \"$LOCAL\" \"$REMOTE\""
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [merge]
 	tool = nvimdiff
 [mergetool]

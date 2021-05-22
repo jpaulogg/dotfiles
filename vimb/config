@@ -12,25 +12,20 @@ set input-autohide=true
 
 set download-path=${HOME}/Downloads
 set x-hint-command=:sh! /bin/mpv <C-R>;<CR>
-set editor-command=st -t float -e vis +'set syntax text' %s
+set editor-command=st -n 'float' -g 80x24+400+180 -e vis +'set syntax text' %s
 
 # mapeamentos
 nmap <C-c> <Esc>
-imap <C-E> <C-T>
 imap <C-c> <Esc>
 cmap <C-n> <Tab>
 cmap <C-p> <S-Tab>
 cmap <C-j> <CR>
 
 nmap ZQ :quit!<CR>
-nmap <C-w> :quit<CR>
 
 nmap C :set caret!<CR>
 nmap S :set status-bar!<CR>
 nmap J :set scripts!<CR>R<Esc>
-
-nmap <C-j> :sh! st -t 'float' -e ranger ~/Downloads<CR>
-nmap <C-b> :bma<Space>
 
 # Página inicial e search engines
 set home-page=https://duckduckgo.com/

@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# FUNÇÕES -----------------------------------------------------------------------
+
+# menu de diretórios
+dirmenu() {
+	[ -d "$1" ] && rootdir="$1" && shift
+	find "${rootdir:-$HOME}" -maxdepth 4 -type d ! -path '*.git*' 2> /dev/null |
+	sort |
+	vis-menu -p 'Selecione um diretório:' -i -l 15 "/${1}"
+}
+# ir para o diretório
+gd() {
+	cd "$(dirmenu $@)"
+	# apagar possíveis atributos de texto residuais do vis-menu
+	echo -n "\033[0m"
+}
+# lista programas com dmenu_path e usa a saída para o programa 'man'
+Man() {
+	local program="$(dmenu_path | vis-menu -l 15 -p 'Abrir manual: ' $@)" && \
+	man "$program" 
+	echo -n "\033[0m"
+}
+
+# ALIASES -----------------------------------------------------------------------
+
+# adicionando opções padrões
+alias cp='cp -iv' \
+      mv='mv -iv' \
+      rm='rm -Iv' \
+      mkdir='mkdir -pv' \
+      ls="ls -phN --color=auto --group-directories-first" \
+      grep="grep --color=always --exclude-dir='.git'" \
+      diff="diff --color=always"
+
+# abreviações de comandos longos
+alias xb='xbacklight' \
+      xrb='xrandr --output VGA1 --brightness' \
+      p='doas pacman' \
+      mci='doas make clean install' \
+      gc='git commit' \
+      gs='git status' \
+      gb='git checkout' \
+      gpom='git push origin master' \
+      gpfb='git push fork build' \
+      gitu='git add . && git commit -a && git push origin'
+
+# preguiça
+alias ..='cd ..'

@@ -1,13 +1,23 @@
 #!/bin/sh
 # inicialização do Xorg
 
-xbacklight -set 12 &
-xset r rate 300 50 &
+xset r rate 300 50
+xbacklight -set 18
 xcompmgr &
 
-unclutter &
-xwallpaper --output LVDS1 --zoom /home/jpgg/Imagem/colecao-papel-de-parede/minas-gerais-brazil-nature.jpg &
-#feh --randomize --no-fehbg --bg-fill ~/Imagem/colecao-papel-de-parede/* &
+dunst &
+unclutter --timeout 3 &
+
+# papel de parede a depender de quantos monitores estão ligados
+monitors=$(xrandr --listmonitors | sed 1q | cut -d ' ' -f 2)
+if [ $monitors -eq 2 ]; then 
+	firstmon=$(xrandr --listmonitors | grep '0: ' | awk '{ print $4 }')
+	secondmon=$(xrandr --listmonitors | grep '1: ' | awk '{ print $4 }')
+	xwallpaper --output "$firstmon" --stretch ${HOME}/Imagem/Wallpapers/minas-gerais.jpg \
+	--output "$secondmon" --stretch ${HOME}/Imagem/Wallpapers/dwm.jpg &
+elif [ $monitors -eq 1 ]; then
+	xwallpaper --stretch ${HOME}/Imagem/Wallpapers/minas-gerais.jpg &
+fi
 
 slstatus &
 exec dwm

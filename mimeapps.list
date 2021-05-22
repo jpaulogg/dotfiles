@@ -1,2 +1,15 @@
 [Default Applications]
-application/pdf=zathura.desktop
+
+# as entradas .desktop são definidas em ~/.local/share/applications/
+
+application/pdf=zathura.desktop;
+application/epub+zip=zathura.desktop;
+application/vnd.oasis.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice.desktop
+application/octet-stream=libreoffice.desktop
+text/x-shellscript/=text.desktop;
+text/x-c=text.desktop;
+text/plain=text.desktop;
+image/png=img.desktop;
+image/jpeg=img.desktop;
+image/gif=img.desktop;
+inode/directory=file.desktop
