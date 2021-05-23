@@ -7,13 +7,14 @@ dirmenu() {
 	[ -d "$1" ] && rootdir="$1" && shift
 	find "${rootdir:-$HOME}" -maxdepth 4 -type d ! -path '*.git*' 2> /dev/null |
 	sort |
-	vis-menu -p 'Selecione um diretório:' -i -l 15 "/${1}"
+	vis-menu -p 'Selecione um diretório:' -l 15 "/${1}"
 }
 # ir para o diretório
 gd() {
 	cd "$(dirmenu $@)"
 	# apagar possíveis atributos de texto residuais do vis-menu
 	echo -n "\033[0m"
+	clear
 }
 # lista programas com dmenu_path e usa a saída para o programa 'man'
 Man() {
