@@ -2,7 +2,7 @@
 # inicialização do Xorg
 
 xset r rate 300 50
-xbacklight -set 18
+xbacklight -set 15
 xcompmgr &
 
 dunst &

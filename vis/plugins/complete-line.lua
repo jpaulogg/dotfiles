@@ -10,7 +10,7 @@ vis:map(vis.modes.INSERT, "<C-x><C-l>", function()
 	local cur_line = file.lines[sel.line]
 	local indent_patt = "^[ \t\v\f]+"
 	local prefix = cur_line:sub(1, sel.col - 1):gsub(indent_patt, "")
-	local cmd = [[grep --color=never '^]]..prefix..[[.' | vis-menu -l 4]]
+	local cmd = [[sed 's/^\s\+//' | vis-menu -l 4 ]]..prefix
 	local status, out, err = vis:pipe(file, {start = 0, finish = file.size}, cmd)
 	if status ~= 0 or not out then
 		if err then vis:info(err) end

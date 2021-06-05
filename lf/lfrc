@@ -16,9 +16,8 @@ set ifs "\n"
 # leave some space at the top and the bottom of the screen
 set scrolloff 10
 
-# começar no modo de duas colunas sem preview
-set ratios 1:2
-set nopreview
+# mostrar arquivos ocultos
+set hidden
 
 # MAPEAMENTOS -------------------------------------------------------
 
@@ -33,25 +32,18 @@ map d_ delete
 
 # layout e seleções
 map <space>
-map <space> set_preview
+map <space> three-panels
 map <c-j> :toggle; down
-map <c-k> :toggle; up
+map <c-k> :up; toggle
 
 # abrindo arquivos/diretórios
-map <enter> &$OPENER "$f"
-map <backspace2> &$OPENER $(dirname "$f")
-map E $nvim $fx
-map gd ${{
-	clear
-	choice="$(find $HOME -maxdepth 3 -type d ! -path '*.git*' 2> /dev/null |\
-	vis-menu -p 'Selecione um diretório:' -i -l 15)" && \
-	lf -remote "send $id cd \"$choice\""
-}}
+map <enter> &$OPENER "$fx"
+map E $nvim "$fx"
 
 # COMANDOS -----------------------------------------------------------
 
 # abrir arquivos
-cmd open-with %"$@" $fx
+cmd openwith &"$@" "$fx"
 
 cmd open ${{
 	case $(file --mime-type $f -L -b) in
@@ -60,18 +52,26 @@ cmd open ${{
 	esac
 }}
 
+cmd gd ${{
+	clear
+	choice="$(find $HOME -maxdepth 3 -type d ! -path '*.git*' 2> /dev/null |\
+	vis-menu -p 'Selecione um diretório:' -i -l 15 "$@")" && \
+	lf -remote "send $id cd \"$choice\""
+	clear
+}}
+
 # alternar layout de 1 e 3 colunas
-cmd unset_preview :{{
+cmd two-panels :{{
 	set nopreview
 	set ratios 1:2
 	map <space>
-	map <space> set_preview
+	map <space> three-panels
 }}
-cmd set_preview :{{
+cmd three-panels :{{
 	set preview
 	set ratios 1:2:3
 	map <space>
-	map <space> unset_preview
+	map <space> two-panels
 }}
 
 # links simbólicos

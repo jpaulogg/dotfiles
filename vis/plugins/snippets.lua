@@ -307,4 +307,3 @@ vis:map(vis.modes.INSERT, "<C-x><C-j>", function()
     win.selection.pos = pos + #snipcontent.str
   end
 end, "Insert a snippet")
-

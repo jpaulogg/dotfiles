@@ -4,10 +4,13 @@
 
 # menu de diretórios
 dirmenu() {
-	[ -d "$1" ] && rootdir="$1" && shift
-	find "${rootdir:-$HOME}" -maxdepth 4 -type d ! -path '*.git*' 2> /dev/null |
+	[ -d "$1" ] && startdir="$1" && shift
+	find "${startdir:-$HOME}" \
+		-maxdepth 4 -name '.git' -prune \
+		-o -type d -path "*$1*" \
+		-print 2> /dev/null |
 	sort |
-	vis-menu -p 'Selecione um diretório:' -l 15 "/${1}"
+	vis-menu -p 'Selecione um diretório:' -l 15
 }
 # ir para o diretório
 gd() {
@@ -17,10 +20,11 @@ gd() {
 	clear
 }
 # lista programas com dmenu_path e usa a saída para o programa 'man'
-Man() {
+m() {
 	local program="$(dmenu_path | vis-menu -l 15 -p 'Abrir manual: ' $@)" && \
-	man "$program" 
 	echo -n "\033[0m"
+	clear
+	man "$program" 
 }
 
 # ALIASES -----------------------------------------------------------------------
@@ -31,8 +35,8 @@ alias cp='cp -iv' \
       rm='rm -Iv' \
       mkdir='mkdir -pv' \
       ls="ls -phN --color=auto --group-directories-first" \
-      grep="grep --color=always --exclude-dir='.git'" \
-      diff="diff --color=always"
+      grep="grep --color=auto --exclude-dir='.git' -I" \
+      diff="diff --color=auto"
 
 # abreviações de comandos longos
 alias xb='xbacklight' \

@@ -4,17 +4,15 @@
 TERMINAL='st'
 EDITOR='vis'
 BROWSER="${HOME}/.local/bin/vimb-tabbed"
-FILEMANAGER='lf'
-READER="{HOME}/.local/bin/zathura-tabbed"
 
-export TERMINAL EDITOR BROWSER FILEMANAGER READER
+export TERMINAL EDITOR BROWSER
 
 # arquivos de configuração
-XDG_CONFIG_HOME="$HOME/.config"
-ZDOTDIR="$XDG_CONFIG_HOME/shell"
+XDG_CONFIG_HOME="${HOME}/.config"
+ZDOTDIR="${XDG_CONFIG_HOME}/shell"
 XINITRC="${HOME}/.config/X11/xinitrc"
 XAUTHORITY="${HOME}/.config/X11/Xauthority"
-XDG_DATA_HOME="$HOME/.local/share"
+XDG_DATA_HOME="${HOME}/.local/share"
 R_ENVIRON_USER="${XDG_CONFIG_HOME}/R/Renviron"
 GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
 INPUTRC="${XDG_CONFIG_HOME}/shell/inputrc"
@@ -24,9 +22,9 @@ export XDG_CONFIG_HOME ZDOTDIR XINITRC XAUTHORITY XDG_DATA_HOME R_ENVIRON_USER \
 
 # histórico e cache
 XDG_CACHE_HOME="${XDG_DATA_HOME}/cache"
-LESSHISTFILE="${XDG_CACHE_HOME}/lesshist"
+LESSHISTFILE="-"
 
-export XDG_CACHE_HOME HISTFILE HISTSIZE LESSHISTFILE
+export XDG_CACHE_HOME LESSHISTFILE
 
 # cores dos manuais (less)
 LESS_TERMCAP_mb="$(printf '%b' '\033[1;31m')"
