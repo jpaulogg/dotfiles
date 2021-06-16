@@ -2,29 +2,25 @@
 
 # FUNÇÕES -----------------------------------------------------------------------
 
-# menu de diretórios
-dirmenu() {
-	[ -d "$1" ] && startdir="$1" && shift
-	find "${startdir:-$HOME}" \
-		-maxdepth 4 -name '.git' -prune \
-		-o -type d -path "*$1*" \
-		-print 2> /dev/null |
-	sort |
-	vis-menu -p 'Selecione um diretório:' -l 15
+# encontrar arquivos e abrir no editor
+v() {
+	CHOICE=$(vis-find)
+	[ -f "$CHOICE" ] && vis "$CHOICE"
+	echo
 }
-# ir para o diretório
-gd() {
-	cd "$(dirmenu $@)"
-	# apagar possíveis atributos de texto residuais do vis-menu
-	echo -n "\033[0m"
-	clear
-}
+
 # lista programas com dmenu_path e usa a saída para o programa 'man'
 m() {
-	local program="$(dmenu_path | vis-menu -l 15 -p 'Abrir manual: ' $@)" && \
-	echo -n "\033[0m"
-	clear
-	man "$program" 
+	local PROGRAM="$(dmenu_path | grep ^$1 | vis-menu -p 'manual:')" && \
+	man "$PROGRAM" 
+	echo
+}
+
+# encontrar e entrar em diretórios
+gd() {
+	DIR=$(vis-find --dir "$@")
+	[ -d "$DIR" ] && cd "$DIR"
+	echo
 }
 
 # ALIASES -----------------------------------------------------------------------
@@ -51,4 +47,5 @@ alias xb='xbacklight' \
       gitu='git add . && git commit -a && git push origin'
 
 # preguiça
-alias ..='cd ..'
+alias ..='cd ..' \
+      vf='vis-find'

@@ -37,7 +37,7 @@ map <c-j> :toggle; down
 map <c-k> :up; toggle
 
 # abrindo arquivos/diretórios
-map <enter> &$OPENER "$fx"
+map <enter> &$OPENER "$fx" > /dev/null
 map E $nvim "$fx"
 
 # COMANDOS -----------------------------------------------------------
@@ -54,9 +54,11 @@ cmd open ${{
 
 cmd gd ${{
 	clear
-	choice="$(find $HOME -maxdepth 3 -type d ! -path '*.git*' 2> /dev/null |\
-	vis-menu -p 'Selecione um diretório:' -i -l 15 "$@")" && \
-	lf -remote "send $id cd \"$choice\""
+	CHOICE="$(find ${1:-$HOME} -maxdepth 4 \
+		-name '.git' -prune \
+		-o -type d -print 2> /dev/null |\
+		vis-menu -b -l 15)" && \
+	lf -remote "send $id cd \"$CHOICE\""
 	clear
 }}
 

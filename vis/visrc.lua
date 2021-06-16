@@ -3,13 +3,16 @@ require('vis')
 
 -- PLUGINS --------------------------------------------------------------------
 require('plugins/surround')
-require('plugins/complete-line')
-require('plugins/complete-dict')
+--require('plugins/complete-dict')
+--require('plugins/complete-line')
+--require('plugins/complete-char')
+--require('plugins/complete-keyword')
+require('plugins/ins-completion')
 require('plugins/statusline')
 
 -- EVENTOS --------------------------------------------------------------------
 
--- na inicialização
+-- inicialização
 vis.events.subscribe(vis.events.INIT, function()
   	vis:command('set theme zenburn_alpha')
 	vis:command('set autoindent')
@@ -17,12 +20,12 @@ vis.events.subscribe(vis.events.INIT, function()
 	vis:command('set shell /bin/sh')
 end)
 
--- depois de abrir uma nova janela
+-- novas janelas
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	vis:command('set relativenumbers')
 end)
 
--- configurações por extensão
+-- configurações por extensão (filetype)
 settings = { rstats = {'set tabwidth 2', nil} }
 
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
@@ -37,11 +40,12 @@ end)
 
 -- COMANDOS -------------------------------------------------------------------
 
--- novo terminal com o administrador de arquivos no diretório atual
+-- administrador de arquivos
 vis:command_register('lf', function(argv)
-	local dir = argv[1] or ''
-	local cmd = [[$TERMINAL -e lf -command 'two-panels' ]] -- two-panels is a custom command in lfrc
-	vis:command('!'..cmd..dir..'&')
+	local directory = argv[1] or ''
+	-- comando two-panels no arquivo lfrc
+	local cmd =string.format("$TERMINAL -e lf -command two-panels %s 2> /dev/null &", directory)
+	vis:command('!'..cmd)
 end, "Abre o programa lf(1) em uma nova janela")
 
 -- ATALHOS DE TACLADO ---------------------------------------------------------
@@ -54,13 +58,22 @@ vis:map(vis.modes.VISUAL, ' p', '"+p')
 -- usando 'alt' como 'escape'
 vis:map(vis.modes.INSERT, '<M-u>', '<Escape>u')
 vis:map(vis.modes.INSERT, '<M-j>', '<Escape>j')
+vis:map(vis.modes.INSERT, '<M-k>', '<Escape>k')
 vis:map(vis.modes.INSERT, '<M-h>', '<Escape>h')
+vis:map(vis.modes.INSERT, '<M-l>', '<Escape>l')
 
 -- selecionar colunas divididas por espaços e vírgulas (útil para alinhamento)
-vis:map(vis.modes.VISUAL, ' ,', ':y/, +<Enter><vis-selections-align-indent-left>')
+vis:map(vis.modes.VISUAL, ' ,', ':y/,\\s+<Enter>')
 
 -- o contrário de J, separando a linha
 vis:map(vis.modes.NORMAL, 'K', ':|fmt<Enter>')
+
+-- mapear '!' como '|' para facilitar a vida quando o teclado não tiver '|'
+vis:map(vis.modes.NORMAL, '!', '|')
+vis:map(vis.modes.VISUAL, '!', '|')
+
+-- anular J no modo visual
+vis:unmap(vis.modes.VISUAL, 'J')
 
 -- ignore case
 vis:map(vis.modes.NORMAL, ' /', '/(?i)')
