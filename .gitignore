@@ -1,3 +1,14 @@
 nvim/
-vis/plugins/*/
-
+vis/plugins/*
+BraveSoftware/
+GIMP/
+QtProject.conf
+X11/Xauthority
+calibre/
+dconf/
+gnupg/
+htop/
+libreoffice/
+neofetch/
+nicotine/
+qBittorrent/
