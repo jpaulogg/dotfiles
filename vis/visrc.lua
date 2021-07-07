@@ -15,7 +15,7 @@ vis.events.subscribe(vis.events.INIT, function()
 	vis:command('set tabwidth 4')
 end)
 
--- novas janelas
+-- ao abrir uma janela
 vis.events.subscribe(vis.events.WIN_OPEN, function(win)
 	vis:command('set relativenumbers')
 end)
@@ -29,10 +29,10 @@ end)
 
 -- COMANDOS -------------------------------------------------------------------
 
-vis:command_register('Sp', function(argv)
+vis:command_register('Sp', function(argv) -- Split
 	local file = vis.win.file
 	local path = argv[1] or file.path
-	local cmd = string.format("!st -e vis '%s' &", path)
+	local cmd = string.format([[!/bin/sh -c "st -e vis '%s' &"]], path)
 	vis:command(cmd)
 end, "Abrir arquivo em nova janela de terminal")
 
@@ -50,20 +50,17 @@ vis:map(vis.modes.INSERT, '<M-k>', '<Escape>k')
 vis:map(vis.modes.INSERT, '<M-h>', '<Escape>h')
 vis:map(vis.modes.INSERT, '<M-l>', '<Escape>l')
 
--- o contrário de J, separando a linha
-vis:map(vis.modes.NORMAL, 'K', 's<Enter><C-c>')
-
 -- mapear "!" como "|" para facilitar a vida quando o teclado não tiver "|"
 vis:map(vis.modes.NORMAL, '!', '|')
 vis:map(vis.modes.VISUAL, '!', '|')
 
 -- anular J no modo visual
-vis:unmap(vis.modes.VISUAL, 'J')
+vis:map(vis.modes.VISUAL, 'J', 'j')
 
 -- ignore case
 vis:map(vis.modes.NORMAL, 'g/', '<vis-search-forward>(?i)')
 
--- formatar texto com gq
+-- justificar texto com gq
 vis:operator_new("gq", function(file, range, pos)
 	local status, out, err = vis:pipe(file, range, "par jw80")
 	if not status then

@@ -2,11 +2,7 @@
 
 # aparência
 autoload -U colors && colors
-if [ $USERNAME = 'root' ]; then
-	PS1="%B%F{1}[ %m:%F{12}%~%F{1} ]#%F{reset_color}%b "
-else
-	PS1="%B%F{1}[ %F{3}%n%F{11}:%~%F{1} ]%F{3}$%F{reset_color}%b "
-fi
+PS1="%B%F{1}[ %F{3}%n%F{11}:%~%F{1} ]%F{3}$%F{reset_color}%b "
 
 # opções {{{1
 setopt histignorealldups

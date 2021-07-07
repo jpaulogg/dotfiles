@@ -2,26 +2,23 @@
 
 # FUNÇÕES -----------------------------------------------------------------------
 
-# encontrar arquivos e abrir no editor
-v() {
-	CHOICE=$(vis-find)
-	[ -f "$CHOICE" ] && vis "$CHOICE"
-	echo
-}
-
-# lista programas com dmenu_path e usa a saída para o programa 'man'
-m() {
-	local PROGRAM="$(dmenu_path | grep ^$1 | vis-menu -p 'manual:')" && \
-	man "$PROGRAM" 
-	echo
-}
-
-# encontrar e entrar em diretórios
 gd() {
-	DIR=$(vis-find --dir "$@")
-	[ -d "$DIR" ] && cd "$DIR"
-	echo
+	clear
+	case "$1" in
+		*/) DIR=$(vis-open -t "$1");;
+		*) DIR=$(vis-find -d "$@")/
+	esac
+	clear; cd "${DIR%/*}"
 }
+
+v() {
+	clear
+	CHOICE=$(vis-find . "$1")
+	clear
+	[ -n "$CHOICE" ] && vis "$CHOICE"
+}
+
+m() { dmenu_path | grep "^$1" | vis-menu -p "manual:" | xargs -r man; }
 
 # ALIASES -----------------------------------------------------------------------
 
@@ -30,22 +27,24 @@ alias cp='cp -iv' \
       mv='mv -iv' \
       rm='rm -Iv' \
       mkdir='mkdir -pv' \
-      ls="ls -phN --color=auto --group-directories-first" \
+      ls="ls -phCN --color=auto --group-directories-first" \
       grep="grep --color=auto --exclude-dir='.git' -I" \
       diff="diff --color=auto"
 
 # abreviações de comandos longos
-alias xb='xbacklight' \
-      xrb='xrandr --output VGA1 --brightness' \
+alias xrb='xrandr --output VGA1 --brightness' \
       p='doas pacman' \
       mci='doas make clean install' \
-      gc='git commit' \
-      gs='git status' \
-      gb='git checkout' \
-      gpom='git push origin master' \
-      gpfb='git push fork build' \
-      gitu='git add . && git commit -a && git push origin'
+      Gc='git commit' \
+      GC='git clone --depth 1' \
+      Gd='git diff' \
+      Gl='git log -p' \
+      Gs='git status' \
+      Gb='git checkout' \
+      Gpom='git push origin master' \
+      Gpfb='git push fork mybuild'
 
 # preguiça
 alias ..='cd ..' \
+	  +x='chmod +x' \
       vf='vis-find'

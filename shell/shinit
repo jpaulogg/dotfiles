@@ -1,6 +1,6 @@
 #!/bin/sh
-set -o noclobber -o vi
-case "$0" in (?ksh|bash) set -o braceexpand; esac
+set -o vi -o noclobber
+case "$0" in (*ksh) set -X; esac
 
 HISTFILE="$XDG_CACHE_HOME/histifle"
 HISTSIZE=5000
@@ -20,8 +20,8 @@ else
 	PROMPT='#'
 fi
 
-case "$(basename $0)" in
-	dash) PS1="[ $(basename $0):$CURDIR ]$PROMPT ";;
+case "$0" in
+	*dash) PS1="[ $(basename $0):$CURDIR ]$PROMPT ";;
 	*) PS1="$COL1[ $COL2$(id -un):$COL3$CURDIR $COL1]$COL2$PROMPT[0m "
 esac
 export PS1

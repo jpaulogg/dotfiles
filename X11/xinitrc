@@ -9,14 +9,14 @@ dunst &
 unclutter --timeout 3 &
 
 # papel de parede a depender de quantos monitores estão ligados
-monitors=$(xrandr --listmonitors | sed 1q | cut -d ' ' -f 2)
-if [ $monitors -eq 2 ]; then 
-	firstmon=$(xrandr --listmonitors | grep '0: ' | awk '{ print $4 }')
-	secondmon=$(xrandr --listmonitors | grep '1: ' | awk '{ print $4 }')
-	xwallpaper --output "$firstmon" --stretch ${HOME}/Imagem/Wallpapers/minas-gerais.jpg \
-	--output "$secondmon" --stretch ${HOME}/Imagem/Wallpapers/dwm.jpg &
-elif [ $monitors -eq 1 ]; then
-	xwallpaper --stretch ${HOME}/Imagem/Wallpapers/minas-gerais.jpg &
+MONITORS=$(xrandr --listmonitors | grep -m 1 -o '[0-9]$')
+if [ $MONITORS -eq 1 ]; then 
+	xwallpaper --stretch "$HOME/Imagem/Wallpapers/minas-gerais.jpg" &
+else
+	FIRSTMON=$(xrandr --listmonitors | awk 'NR == 2 { print $NF }')
+	SECONDMON=$(xrandr --listmonitors | awk 'NR == 3 { print $NF }')
+	xwallpaper --output "$FIRSTMON" --stretch "$HOME/Imagem/Wallpapers/minas-gerais.jpg" \
+	--output "$SECONDMON" --stretch "$HOME/Imagem/Wallpapers/dwm.jpg" &
 fi
 
 slstatus &
