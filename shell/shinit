@@ -1,0 +1,30 @@
+#!/bin/sh
+set -o noclobber -o vi
+case "$0" in (?ksh|bash) set -o braceexpand; esac
+
+HISTFILE="$XDG_CACHE_HOME/histifle"
+HISTSIZE=5000
+HISTCONTROL='ignoredups'
+
+# prompt
+CURDIR='$(pwd | sed "s|^$HOME|~|")'
+COL1='[1;31m'        # brackets (vermelho1)
+
+if [ $(id -u) -ne 0 ]; then
+	COL2='[1;33m'    # username e prompt (amarelo1)
+	COL3='[1;93m'    # working directory (amarelo2)
+	PROMPT='$'
+else
+	COL2=$COL1         # username e prompt (vermelho1)
+	COL3='[1;94m'    # working directory (azul2)
+	PROMPT='#'
+fi
+
+case "$(basename $0)" in
+	dash) PS1="[ $(basename $0):$CURDIR ]$PROMPT ";;
+	*) PS1="$COL1[ $COL2$(id -un):$COL3$CURDIR $COL1]$COL2$PROMPT[0m "
+esac
+export PS1
+
+# aliases e funções
+. "$XDG_CONFIG_HOME/shell/aliases"
